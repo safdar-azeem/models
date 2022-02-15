@@ -6,7 +6,7 @@ router
 	.get('/all', (req, res) => {
 		Model.find((err, models) => {
 			if (err) {
-				res.send(err);
+				res.status(500).send(err);
 			} else {
 				res.json(models);
 			}
@@ -15,7 +15,7 @@ router
 	.get('/filter', (req, res) => {
 		Model.find(req.query, (err, models) => {
 			if (err) {
-				res.send(err);
+				res.status(500).send(err);
 			} else {
 				res.json(models);
 			}
@@ -32,7 +32,7 @@ router
 			},
 			(err, models) => {
 				if (err) {
-					res.send(err);
+					res.status(500).send(err);
 				} else {
 					res.json(models);
 				}
@@ -42,7 +42,7 @@ router
 	.post('/', (req, res) => {
 		Model.create(req.body, (err, model) => {
 			if (err) {
-				res.send(err);
+				res.status(500).send(err);
 			} else {
 				res.json(model);
 			}

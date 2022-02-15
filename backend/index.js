@@ -15,6 +15,7 @@ connectToDb();
 app.use('/api/model', modelRouter);
 
 // Start the server
-app.listen(5000, () => {
-	console.log('Server started on port 5000');
+const PORT = process.env.PORT || 7070;
+app.listen(PORT, () => {
+	console.log('Server started on port PORT', PORT);
 });
