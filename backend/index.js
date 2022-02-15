@@ -4,13 +4,15 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const connectToDb = require('./db/connect');
+const modelRouter = require('./routes/model');
 
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// Connect to the database
 connectToDb();
 
-app.get('/', (req, res) => {
-    res.send('Hello World');
-})
+// Routes
+app.use('/api/model', modelRouter);
 
 // Start the server
 app.listen(5000, () => {
