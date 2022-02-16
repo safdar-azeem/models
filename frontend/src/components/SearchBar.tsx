@@ -1,22 +1,33 @@
 import { Box, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { searchModels } from '../store/actions/models.action';
+import { searchModels, filterModels } from '../store/actions/models.action';
 const SearchBar = () => {
 	const dispatch = useDispatch();
 
-	const [age, setAge] = React.useState('');
-	const handleChange = (event: any) => setAge(event.target.value);
+	const [filter, setFilter] = React.useState('');
+	const handleChange = (event: any) => setFilter(event.target.value);
 
 	const [search, setSearch] = React.useState('');
 	const handleSearch = (event: any) => {
 		const value = event.target.value;
 		setSearch(value);
-		setTimeout(() => {
-			dispatch(searchModels(value));
-		}, 500);
 	};
 
+	useEffect(() => {
+		if (filter !== '' && search !== '') {
+			dispatch(filterModels(filter, search));
+			console.log('filter', filter);
+			console.log('search', search);
+		}
+
+		if (filter === '' && search !== '') {
+			setTimeout(() => {
+				dispatch(searchModels(search));
+			}, 500);
+		}
+
+	}, [filter, search]);
 	return (
 		<Box
 			sx={{
@@ -46,13 +57,16 @@ const SearchBar = () => {
 				<Select
 					labelId='demo-simple-select-label'
 					id='demo-simple-select'
-					value={age}
+					value={filter}
 					label='Filter'
 					onChange={handleChange}
+					sx={{
+						color: 'white',
+					}}
 				>
-					<MenuItem value={10}>Ten</MenuItem>
-					<MenuItem value={20}>Twenty</MenuItem>
-					<MenuItem value={30}>Thirty</MenuItem>
+					<MenuItem value={'hairColor'}>Hair Color</MenuItem>
+					<MenuItem value={'gender'}>Gender</MenuItem>
+					<MenuItem value={'weight'}>Weight</MenuItem>
 				</Select>
 			</FormControl>
 			<TextField

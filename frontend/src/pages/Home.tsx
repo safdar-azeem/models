@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Grid } from '@mui/material';
+import { Box, CircularProgress, Grid, Typography } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Header from '../components/Header';
@@ -23,11 +23,13 @@ const Home = () => {
 					<CircularProgress />
 				</Box>
 			) : error ? (
-				<div>{error}</div>
+				<Box display='flex' justifyContent='center' alignItems='center' height='50vh'>
+					<Typography variant='h5'>{error}</Typography>
+				</Box>
 			) : (
 				<Grid container spacing={9} sx={{ marginTop: '4px', marginBottom: '90px' }}>
 					{data.map((model: any) => (
-						<Grid item xs={12} sm={12} md={6} lg={6} key={model.id}>
+						<Grid item xs={12} sm={12} md={6} lg={6} key={model._id}>
 							<ModelPost model={model}></ModelPost>
 						</Grid>
 					))}
