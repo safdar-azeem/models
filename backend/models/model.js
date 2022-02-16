@@ -6,11 +6,13 @@ const modelSchema = new Schema({
 		type: String,
 		required: true,
 		trim: true,
+		lowercase: true
 	},
 	lastName: {
 		type: String,
 		required: true,
 		trim: true,
+		lowercase: true
 	},
 	picture: {
 		type: String,
@@ -31,6 +33,7 @@ const modelSchema = new Schema({
 		type: String,
 		required: true,
 		trim: true,
+		lowercase: true
 	},
 	shoeSize: {
 		type: String,
@@ -41,6 +44,7 @@ const modelSchema = new Schema({
 		type: String,
 		required: true,
 		trim: true,
+		lowercase: true,
 	},
 	hairLength: {
 		type: String,

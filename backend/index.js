@@ -3,10 +3,12 @@ dotenv.config({ path: __dirname + '/.env' });
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const connectToDb = require('./db/connect');
 const modelRouter = require('./routes/model');
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
 // Connect to the database
 connectToDb();

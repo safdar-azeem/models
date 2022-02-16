@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom'
-import App from './components/App'
+import App from './App'
 
 ReactDOM.render(
+  <Suspense fallback={<span>Loading...</span>}>
   <React.StrictMode>
     <App />
-  </React.StrictMode>,
+  </React.StrictMode>
+  </Suspense>,
   document.getElementById('root')
 )
