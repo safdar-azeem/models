@@ -2,6 +2,7 @@ import { Box, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { searchModels, filterModels } from '../store/actions/models.action';
+
 const SearchBar = () => {
 	const dispatch = useDispatch();
 
@@ -17,8 +18,6 @@ const SearchBar = () => {
 	useEffect(() => {
 		if (filter !== '' && search !== '') {
 			dispatch(filterModels(filter, search));
-			console.log('filter', filter);
-			console.log('search', search);
 		}
 
 		if (filter === '' && search !== '') {
@@ -26,15 +25,15 @@ const SearchBar = () => {
 				dispatch(searchModels(search));
 			}, 500);
 		}
-
 	}, [filter, search]);
+
 	return (
 		<Box
 			sx={{
 				display: 'flex',
 				justifyContent: 'center',
 				alignItems: 'center',
-				marginTop: '2rem',
+				marginTop: '3rem',
 			}}
 		>
 			<FormControl
@@ -48,11 +47,12 @@ const SearchBar = () => {
 			>
 				<InputLabel
 					id='demo-simple-select-label'
+					shrink={false}
 					sx={{
 						color: 'white',
 					}}
 				>
-					Filter
+					{!filter && "Filter"}
 				</InputLabel>
 				<Select
 					labelId='demo-simple-select-label'

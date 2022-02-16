@@ -4,13 +4,13 @@ const Model = require('../models/model');
 
 router
 	.get('/all', (req, res) => {
-		Model.find((err, models) => {
-			if (err) {
-				res.status(500).send(err);
-			} else {
+		Model.find({})
+			.sort({ createdAt: -1 })
+			.then(models => {
 				res.json(models);
-			}
-		});
+			}).catch(err => {
+				res.status(500).json(err);
+			})
 	})
 	.get('/filter', (req, res) => {
 		Model.find(req.query, (err, models) => {
@@ -39,7 +39,7 @@ router
 			},
 		);
 	})
-	.post('/', (req, res) => {
+	.post('/create', (req, res) => {
 		Model.create(req.body, (err, model) => {
 			if (err) {
 				res.status(500).send(err);

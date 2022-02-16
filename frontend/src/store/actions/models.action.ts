@@ -63,3 +63,24 @@ export const filterModels = (filter: string, search: string): any => {
 		}
 	};
 };
+
+
+export const postModel = (model: any): any => {
+    return async (dispatch: any) => {
+        dispatch(modelLoading());
+        try {
+            const data = await fetch(env.VITE_REACT_APP_API_URL + '/model/create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(model),
+            });
+            const jsonData = await data.json();
+			dispatch(modelSuccess(jsonData));
+			return true;
+        } catch (error) {
+            dispatch(modelError('Error while fetching models'));
+        }
+    };
+}

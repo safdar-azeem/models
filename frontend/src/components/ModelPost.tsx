@@ -1,14 +1,14 @@
 import { Box, Grid } from '@mui/material';
-import React from 'react'
-import {Typography} from '@mui/material';
+import { Typography } from '@mui/material';
+import { typographyUtils } from '../utils/typography.utils';
 
 interface IProps {
-  model: any
+	model: any;
 }
 
 const ModelPost = (props: IProps) => {
-  const { model } = props
-  return (
+	const { model } = props;
+	return (
 		<Box boxShadow='0px 0px 10px rgba(0, 0, 0, 0.1)' padding={2} sx={{ borderRadius: '10px' }}>
 			<img
 				src={model.picture}
@@ -21,7 +21,9 @@ const ModelPost = (props: IProps) => {
 			/>
 			<Box mt={2}>
 				<Typography variant='h5' sx={{ fontWeight: 'bold' }}>
-					{model.firstName + ' ' + model.lastName}
+					{typographyUtils.captalize(model.firstName) +
+						' ' +
+						typographyUtils.captalize(model.lastName)}
 				</Typography>
 				<Box
 					mt={3}
@@ -55,7 +57,13 @@ const ModelPost = (props: IProps) => {
 							alignItems='center'
 						>
 							<i className='fa-solid fa-clock' style={{ marginRight: '10px' }}></i>
-							<Typography variant='body1'>{"21 yrs"}</Typography>
+							<Typography variant='body1'>
+								{model.dateOfBirth
+									? new Date().getFullYear() -
+									  new Date(model.dateOfBirth).getFullYear() +
+									  ' yrs'
+									: ''}
+							</Typography>
 						</Grid>
 						<Grid
 							item
@@ -87,14 +95,7 @@ const ModelPost = (props: IProps) => {
 							display={'flex'}
 							alignItems='center'
 						>
-							<img
-								src='https://cdn-icons.flaticon.com/png/512/2773/premium/2773819.png?token=exp=1645016024~hmac=312a81dcd75fafb6f3dda685c1937e5c'
-								style={{
-									width: '20px',
-									marginRight: '10px',
-								}}
-								alt='Not Found'
-							/>
+							<i className='fa-solid fa-ruler-vertical' style={{ marginRight: '10px' }}></i>
 							<Typography variant='body1'>{model.height}</Typography>
 						</Grid>
 						<Grid
@@ -153,14 +154,7 @@ const ModelPost = (props: IProps) => {
 							display={'flex'}
 							alignItems='center'
 						>
-							<img
-								src='https://cdn-icons.flaticon.com/png/512/3119/premium/3119181.png?token=exp=1645016337~hmac=4fa5aa12d0e10e261df9dcfc0d59f2fa'
-								style={{
-									width: '20px',
-									marginRight: '10px',
-								}}
-								alt='Not Found'
-							/>
+							<i className='fa-solid fa-briefcase' style={{ marginRight: '10px' }}></i>
 							<Typography variant='body1'>{model.profession}</Typography>
 						</Grid>
 					</Grid>
@@ -168,6 +162,6 @@ const ModelPost = (props: IProps) => {
 			</Box>
 		</Box>
 	);
-}
+};
 
-export default ModelPost
+export default ModelPost;

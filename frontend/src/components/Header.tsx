@@ -1,7 +1,14 @@
 import { Box, Typography, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
-function App() {
-  return (
+
+interface IProps {
+	title: string;
+	buttonText: string;
+	buttonLink: string;
+}
+
+function App(props: IProps) {
+	return (
 		<Box
 			sx={{
 				display: 'flex',
@@ -10,9 +17,9 @@ function App() {
 			}}
 		>
 			<Typography variant='h4' fontWeight='bold'>
-				Models
+				{props.title}
 			</Typography>
-			<Link to='/upload' style={{ textDecoration: 'none' }}>
+			<Link to={props.buttonLink} style={{ textDecoration: 'none' }}>
 				<Button
 					sx={{
 						backgroundColor: 'black',
@@ -23,11 +30,11 @@ function App() {
 						},
 					}}
 				>
-					Post New Model
+					{props.buttonText}
 				</Button>
 			</Link>
 		</Box>
 	);
 }
 
-export default App
+export default App;

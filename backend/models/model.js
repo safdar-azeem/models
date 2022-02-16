@@ -6,13 +6,13 @@ const modelSchema = new Schema({
 		type: String,
 		required: true,
 		trim: true,
-		lowercase: true
+		lowercase: true,
 	},
 	lastName: {
 		type: String,
 		required: true,
 		trim: true,
-		lowercase: true
+		lowercase: true,
 	},
 	picture: {
 		type: String,
@@ -33,7 +33,7 @@ const modelSchema = new Schema({
 		type: String,
 		required: true,
 		trim: true,
-		lowercase: true
+		lowercase: true,
 	},
 	shoeSize: {
 		type: String,
@@ -76,10 +76,12 @@ const modelSchema = new Schema({
 		required: true,
 		trim: true,
 	},
+	createdAt: {
+		type: Date,
+		default: Date.now,
+	},
 });
 
-
-
-var Model = mongoose.model('Model', modelSchema);
+let Model = mongoose.model('Model', modelSchema);
 
 module.exports = Model;

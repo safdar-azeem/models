@@ -8,6 +8,8 @@ const connectToDb = require('./db/connect');
 const modelRouter = require('./routes/model');
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 app.use(cors());
 
 // Connect to the database
